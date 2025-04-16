@@ -1,7 +1,7 @@
 /*----------------------------------------------
     # Container  style here
 ----------------------------------------------*/
-@media (min-width:1650px) {
+@media (min-width:550px) {
     .header-1 {
         .container {
             max-width: 1620px;
@@ -177,3 +177,13 @@
     }
 }
  
+
+// @include breakpoint (max){
+//     .intro-wrapper {
+//         &.style1 {
+//             .container {
+//                 max-width: 1850px !important;
+//             }
+//         }
+//     } 
+// }

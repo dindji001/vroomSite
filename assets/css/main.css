@@ -1,9 +1,9 @@
 /*-----------------------------------------------------------------
-Theme Name: Neotech
+Theme Name: Niotech
 Author: Gramentheme
 Author URI: https://themeforest.net/user/gramentheme
 Version: 1.0.0 
-Description: Neotech - App Landing HTML Template <
+Description: Niotech - App Landing HTML Template <
 
 -------------------------------------------------------------------
  CSS TABLE OF CONTENTS
@@ -55,9 +55,9 @@ Description: Neotech - App Landing HTML Template <
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 :root {
   --body: #fff;
-  --black: #000;
+  --black: #A7CD6F;
   --white: #fff;
-  --theme: #7444FD;
+  --theme: #253E38;
   --theme2: #F9F3EF;
   --theme3: #FAF8FF;
   --title: #282C32;
@@ -466,7 +466,7 @@ input[type=radio]:checked ~ label::before {
   content: "";
   top: 162%;
   left: 50%;
-  background: var(--title);
+  background: var(--black);
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%) rotate(-8deg);
   border-radius: 80%;
@@ -710,7 +710,7 @@ input[type=radio]:checked ~ label::before {
 /*----------------------------------------------
     # Container  style here
 ----------------------------------------------*/
-@media (min-width: 1650px) {
+@media (min-width: 550px) {
   .header-1 .container {
     max-width: 1620px;
   }
@@ -5773,7 +5773,7 @@ input.main-search-input::placeholder {
 .intro-wrapper.style1 {
   position: relative;
   border-radius: 50px;
-  background: rgba(116, 68, 253, 0.06);
+  background: rgba(37, 62, 56, 0.06); 
   margin-top: 40px;
 }
 @media (max-width: 767px) {
@@ -5833,7 +5833,7 @@ input.main-search-input::placeholder {
   align-items: center;
   gap: 10px;
   border-radius: 30px;
-  background: rgba(116, 68, 253, 0.15);
+  background: #a7cd6f67;
   backdrop-filter: blur(2px);
   color: var(--theme);
   font-family: "Urbanist", sans-serif;
@@ -6205,6 +6205,29 @@ input.main-search-input::placeholder {
 }
 .hero-3 .hero-image {
   margin-right: -60%;
+  position: relative;
+}
+.hero-3 .hero-image .mobile-image {
+  position: absolute;
+  bottom: 0;
+  left: -60px;
+  max-width: 180px;
+}
+@media (max-width: 1399px) {
+  .hero-3 .hero-image .mobile-image {
+    max-width: 140px;
+    left: 0;
+  }
+}
+@media (max-width: 1199px) {
+  .hero-3 .hero-image .mobile-image {
+    max-width: 180px;
+  }
+}
+@media (max-width: 767px) {
+  .hero-3 .hero-image .mobile-image {
+    max-width: 100px;
+  }
 }
 @media (max-width: 1199px) {
   .hero-3 .hero-image {
@@ -6440,7 +6463,7 @@ input.main-search-input::placeholder {
   align-items: center;
   gap: 10px;
   border-radius: 100px;
-  background: rgba(116, 68, 253, 0.15);
+  background: rgba(50, 7, 168, 0.15);
   margin-bottom: 10px;
 }
 .work-process-box.style1 .title {
@@ -7459,7 +7482,7 @@ input.main-search-input::placeholder {
 
 .feature-provide-box-items {
   border-radius: 16px;
-  background: #E4E6FF;
+  background: #dff8b8;
   padding: 40px;
   position: relative;
   transition: all 0.4s ease-in-out;
