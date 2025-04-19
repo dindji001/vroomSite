@@ -5301,7 +5301,7 @@ input.main-search-input::placeholder {
   content: "";
   width: 25px;
   height: 2px;
-  background-color: #7444FD;
+  background-color: #242331;
 }
 .footer-widgets-wrapper .single-footer-widget .widget-head h3::after {
   position: absolute;
@@ -5565,7 +5565,7 @@ input.main-search-input::placeholder {
   padding: 52px 58px 52px 45px;
 }
 .footer-widgets-wrapper.style1 .single-footer-widget .contact-box .subtitle {
-  color: #5236FF;
+  color: #253E38;
   font-family: "Nunito", sans-serif;
   font-size: 16px;
   font-style: normal;
