@@ -1,0 +1,18 @@
+{
+  "projects": {
+    "default": "vroom-451921"
+  },
+  "targets": {
+    "vroom-451921": {
+      "hosting": {
+        "prod": [
+          "vroom-451921-ef38"
+        ],
+        "dev": [
+          "vroom-451921"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
