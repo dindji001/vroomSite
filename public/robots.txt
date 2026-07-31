@@ -1,0 +1,14 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://vroomcar.com/sitemap.xml
+
+# Disallow specific paths if needed
+# Disallow: /api/
+# Disallow: /admin/
+# Disallow: /_next/
+
+# Crawl-delay
+Crawl-delay: 1
