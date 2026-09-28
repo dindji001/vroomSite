@@ -62,7 +62,7 @@ export default function CartPage() {
                   model={item.vehicle.model?.name}
                   year={item.vehicle.year}
                   price={item.vehicle.price?.amount}
-                  currency={item.vehicle.price?.currency === "EUR" ? "€" : "$"}
+                  currency={item.vehicle.price?.currency === "XOF" ? "FCFA" : "$"}
                   mileage={item.vehicle.mileageKm?.toLocaleString()}
                   fuel={item.vehicle.fuelType}
                   transmission={item.vehicle.transmission}
@@ -77,7 +77,7 @@ export default function CartPage() {
                   name={item.name}
                   originalPrice={item.variant.compareAtPrice?.amount}
                   salePrice={item.variant.price.amount}
-                  currency={item.variant.price.currency === "EUR" ? "€" : "$"}
+                  currency={item.variant.price.currency === "XOF" ? "FCFA" : "$"}
                   image={item.variant.images?.[0]?.url}
                 />
               )}
@@ -124,7 +124,7 @@ export default function CartPage() {
               <div className="mt-4 space-y-3">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Sous-total</span>
-                  <span>{formatMoney({ amount: total as unknown as number, currency: currency as "EUR" })}</span>
+                  <span>{formatMoney({ amount: total as unknown as number, currency: currency as "XOF" })}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Livraison</span>
@@ -133,7 +133,7 @@ export default function CartPage() {
                 <div className="pt-3 border-t border-border flex justify-between font-bold text-lg">
                   <span>Total</span>
                   <span className="text-[#253E38] dark:text-[#A7CD0F]">
-                    {formatMoney({ amount: total as unknown as number, currency: currency as "EUR" })}
+                    {formatMoney({ amount: total as unknown as number, currency: currency as "XOF" })}
                   </span>
                 </div>
               </div>

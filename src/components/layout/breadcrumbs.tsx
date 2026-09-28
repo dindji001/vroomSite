@@ -9,11 +9,11 @@ type BreadcrumbItemExtended = BaseBreadcrumbItem & {
 };
 
 interface BreadcrumbsProps {
-  items: BreadcrumbItemExtended[];
+  items?: BreadcrumbItemExtended[];
   className?: string;
 }
 
-export function Breadcrumbs({ items, className }: BreadcrumbsProps): JSX.Element {
+export function Breadcrumbs({ items = [], className }: BreadcrumbsProps): React.ReactElement {
   const allItems: BreadcrumbItemExtended[] = [
     { label: "Accueil", href: "/", icon: Home },
     ...items,

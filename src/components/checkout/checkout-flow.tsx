@@ -207,7 +207,7 @@ export function CheckoutFlow() {
                   <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
                     <Truck className="w-6 h-6 text-white/50" />
                   </div>
-                  <span className="text-white/70 font-bold">€19.99</span>
+                  <span className="text-white/70 font-bold">12 000 FCFA</span>
                 </div>
                 <h4 className="font-heading text-lg font-bold text-white mb-2">Livraison Express</h4>
                 <p className="text-white/60 text-sm mb-3">Livraison sous 24-48 heures</p>
@@ -229,12 +229,12 @@ export function CheckoutFlow() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField label="Prénom" placeholder="Jean" required icon={User} />
-              <FormField label="Nom" placeholder="Dupont" required icon={User} />
-              <FormField label="Adresse" placeholder="123 Rue de la Paix" required icon={MapPin} />
-              <FormField label="Code postal" placeholder="75001" required icon={MapPin} />
-              <FormField label="Ville" placeholder="Paris" required icon={MapPin} />
-              <FormField label="Téléphone" placeholder="06 12 34 56 78" required icon={Phone} />
+              <FormField label="Prénom" placeholder="Kouassi" required icon={User} />
+              <FormField label="Nom" placeholder="Konan" required icon={User} />
+              <FormField label="Adresse" placeholder="Boulevard de la République" required icon={MapPin} />
+              <FormField label="Code postal" placeholder="00225" required icon={MapPin} />
+              <FormField label="Ville" placeholder="Abidjan" required icon={MapPin} />
+              <FormField label="Téléphone" placeholder="01 23 45 67 89" required icon={Phone} />
             </div>
             
             <FormField label="Instructions de livraison (optionnel)" placeholder="Code d'accès, étage, etc." />

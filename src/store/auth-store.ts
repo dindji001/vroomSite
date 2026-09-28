@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import type { AuthState, User, AuthTokens, LoginInput, RegisterInput } from "@/types/user";
-import { STORAGE_KEYS, SUCCESS_MESSAGES } from "@/constants";
-import { storageGet, storageSet, storageRemove, clearAuthStorage } from "@/helpers";
+import { STORAGE_KEYS } from "@/constants";
+import { storageGet, storageSet, clearAuthStorage } from "@/helpers";
 import { authApi } from "@/services/api";
 import type { AsyncStatus } from "@/types";
 
@@ -131,12 +131,12 @@ export const useAuthStore = create<Store>((set, get) => ({
         status: "success",
       });
       return true;
-    } catch (err: any) {
+    } catch (err: unknown) {
       set({
         loginStatus: "error",
         loading: false,
-        error: err?.message ?? "Impossible de se connecter",
-        errorCode: err?.code,
+        error: err instanceof Error ? err.message : "Impossible de se connecter",
+        errorCode: err instanceof Error ? (err as { code?: string }).code : undefined,
         status: "error",
       });
       return false;
@@ -162,12 +162,12 @@ export const useAuthStore = create<Store>((set, get) => ({
         loading: false,
       });
       return true;
-    } catch (err: any) {
+    } catch (err: unknown) {
       set({
         registerStatus: "error",
         loading: false,
-        error: err?.message ?? "Inscription échouée",
-        errorCode: err?.code,
+        error: err instanceof Error ? err.message : "Inscription échouée",
+        errorCode: err instanceof Error ? (err as { code?: string }).code : undefined,
       });
       return false;
     }
@@ -213,8 +213,8 @@ export const useAuthStore = create<Store>((set, get) => ({
       const user = await authApi.me();
       set({ user, profileStatus: "success" });
       return user;
-    } catch (err: any) {
-      set({ profileStatus: "error", error: err?.message ?? null });
+    } catch (err: unknown) {
+      set({ profileStatus: "error", error: err instanceof Error ? err.message : null });
       return null;
     }
   },

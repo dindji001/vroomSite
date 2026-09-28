@@ -6,7 +6,6 @@ import {
   ShoppingCart,
   ArrowRight,
   Check,
-  X,
   Info,
   AlertTriangle,
   AlertCircle,
@@ -16,20 +15,19 @@ import {
   Search,
   User,
   Phone,
-  Gauge,
-  Fuel,
-  Settings2,
-  Zap,
   ChevronRight,
   CarFront,
   Star,
   Package,
-  Clock,
   MapPin,
   CreditCard,
   Shield,
   Award,
   Truck,
+  Palette,
+  Sun,
+  Moon,
+  Monitor,
 } from "lucide-react"
 import {
   Button,
@@ -78,7 +76,6 @@ import {
   MotionSection,
   MotionH1,
   MotionH2,
-  MotionH3,
   MotionP,
   HoverCard,
   HoverGlow,
@@ -138,7 +135,6 @@ export default function DesignSystemPage() {
       <LoadingOverlay
         visible={showLoading}
         text="Chargement du Design System..."
-        onAnimationStartCapture={() => {}}
       />
 
       <header className="sticky top-0 z-50 glass-strong border-b border-border/40">
@@ -597,7 +593,7 @@ export default function DesignSystemPage() {
                     <PricingCardFeature>Gestion de portefeuille véhicules</PricingCardFeature>
                     <PricingCardFeature>Accès avant-première stock privé</PricingCardFeature>
                     <PricingCardFeature>Expertise dédiée 1:1</PricingCardFeature>
-                    <PricingCardFeature>Livraison européenne blanche</PricingCardFeature>
+                    <PricingCardFeature>Livraison africaine blanche</PricingCardFeature>
                   </PricingCardFeatures>
                   <PricingCardFooter tier="enterprise" ctaLabel="Nous contacter" />
                 </PricingCard>
@@ -639,7 +635,7 @@ export default function DesignSystemPage() {
               </div>
             </Card>
             <Card variant="elevated" className="p-8 space-y-6">
-              <CardTitle className="!text-xl">Formulaire d'inscription</CardTitle>
+              <CardTitle className="!text-xl">Formulaire d&apos;inscription</CardTitle>
               <div className="grid md:grid-cols-2 gap-5">
                 <Input variant="filled" floatingLabel="Prénom" leadingIcon={<User className="size-5" />} placeholder=" " />
                 <Input variant="filled" floatingLabel="Nom" placeholder=" " />
@@ -649,10 +645,11 @@ export default function DesignSystemPage() {
               <div className="grid md:grid-cols-2 gap-5">
                 <Select variant="filled">
                   <option>Pays de résidence</option>
-                  <option>France</option>
-                  <option>Belgique</option>
-                  <option>Suisse</option>
-                  <option>Luxembourg</option>
+                  <option>Côte d'Ivoire</option>
+                  <option>Sénégal</option>
+                  <option>Mali</option>
+                  <option>Burkina Faso</option>
+                  <option>Ghana</option>
                 </Select>
                 <Input variant="filled" floatingLabel="Code postal" placeholder=" " />
               </div>
@@ -725,7 +722,7 @@ export default function DesignSystemPage() {
                   <div className="flex-1 min-w-0">
                     <AlertTitle>Information importante</AlertTitle>
                     <AlertDescription>
-                      Nouveauté 2025 : livraison européenne offerte pour toute commande supérieure à 50 000€.
+                      Nouveauté 2025 : livraison africaine offerte pour toute commande supérieure à 30 000 000 FCFA.
                     </AlertDescription>
                   </div>
                   <AlertAction>
@@ -798,7 +795,7 @@ export default function DesignSystemPage() {
                   <AlertAction>
                     <Button variant="accent" size="lg" className="gap-2">
                       <CreditCard className="size-5" />
-                      Profiter de l'offre
+                      Profiter de l&apos;offre
                     </Button>
                   </AlertAction>
                 </div>
@@ -816,7 +813,7 @@ export default function DesignSystemPage() {
           <div className="space-y-16 max-w-4xl mx-auto">
             <div>
               <div className="text-sm font-bold uppercase tracking-[0.14em] text-muted-foreground mb-6">
-                Parcours d'Achat — Vertical Gradient
+                Parcours d&apos;Achat — Vertical Gradient
               </div>
               <Timeline variant="gradient-line" align="left" orientation="vertical">
                 {[
@@ -907,7 +904,7 @@ export default function DesignSystemPage() {
                             <div>
                               <div className="text-sm font-semibold text-white/70 mb-1">À partir de</div>
                               <div className="font-heading text-3xl md:text-4xl font-bold text-gradient-luxury">
-                                {item.price} €
+                                {item.price} FCFA
                               </div>
                             </div>
                             <Button variant="secondary" size="lg" className="gap-2">
@@ -920,8 +917,8 @@ export default function DesignSystemPage() {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
+                <CarouselDots className="!pt-8" />
               </Carousel>
-              <CarouselDots className="!pt-8" />
             </div>
 
             <div>
@@ -965,6 +962,7 @@ export default function DesignSystemPage() {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
+                <CarouselDots className="!pt-8" />
               </Carousel>
             </div>
           </div>
@@ -1332,7 +1330,7 @@ export default function DesignSystemPage() {
             <div className="relative max-w-3xl mx-auto">
               <Badge variant="accent" size="lg" className="gap-1.5 mb-6">
                 <Sparkles className="size-4" />
-                Design System Prêt à l'Emploi
+                Design System Prêt à l&apos;Emploi
               </Badge>
               <MotionH2 variants={slideUp} className="text-balance">
                 Construisez l&apos;excellence automobile avec le{" "}

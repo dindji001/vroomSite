@@ -161,11 +161,11 @@ export default function AboutPage() {
   const timeline = [
     { year: "2018", title: "Fondation", description: "VroomCar est fondé avec une vision : révolutionner l'achat de véhicules en ligne." },
     { year: "2019", title: "Première livraison", description: "Nous livrons notre premier véhicule à l'international, marquant le début de notre expansion." },
-    { year: "2020", title: "Expansion européenne", description: "Ouverture de nos premiers showrooms en Europe et lancement de notre plateforme de tracking GPS." },
-    { year: "2021", title: "Série A", description: "Levée de fonds de 10M€ pour accélérer notre croissance et notre innovation technologique." },
-    { year: "2022", title: "1000 véhicules", description: "Nous atteignons le cap des 1000 véhicules livrés à travers le monde." },
+    { year: "2020", title: "Expansion africaine", description: "Ouverture de nos premiers showrooms en Afrique de l'Ouest et lancement de notre plateforme de tracking GPS." },
+    { year: "2021", title: "Série A", description: "Levée de fonds de 6.5M FCFA pour accélérer notre croissance et notre innovation technologique." },
+    { year: "2022", title: "1000 véhicules", description: "Nous atteignons le cap des 1000 véhicules livrés à travers l'Afrique." },
     { year: "2023", title: "Innovation", description: "Lancement de VroomTrack Pro et ouverture de notre marketplace d'accessoires premium." },
-    { year: "2024", title: "Leader européen", description: "Devenir le leader européen de l'achat de véhicules en ligne premium." },
+    { year: "2024", title: "Leader africain", description: "Devenir le leader africain de l'achat de véhicules en ligne premium." },
   ];
   
   const values = [

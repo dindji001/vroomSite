@@ -298,7 +298,7 @@ export function Footer() {
               <span>{siteConfig.legal.companyName} — {siteConfig.legal.siret}</span>
               <span>TVA {siteConfig.legal.tvaNumber}</span>
               <span className="inline-flex items-center gap-1.5">
-                Fait avec <Heart className="size-3.5 text-destructive fill-destructive animate-pulse-soft" /> à Paris
+                Fait avec <Heart className="size-3.5 text-destructive fill-destructive animate-pulse-soft" /> à Abidjan
               </span>
             </div>
             <span>© {new Date().getFullYear()} Tous droits réservés</span>

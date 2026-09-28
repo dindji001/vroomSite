@@ -32,8 +32,8 @@ const vehicle = {
   make: "Tesla",
   model: "Model S Plaid",
   year: 2024,
-  price: 89000,
-  currency: "€",
+  price: 15000000,
+  currency: "FCFA",
   mileage: "0",
   fuel: "Électrique",
   transmission: "Automatique",
@@ -41,7 +41,7 @@ const vehicle = {
   acceleration: "2.1s",
   autonomy: "600 km",
   condition: "new",
-  location: "Paris",
+  location: "Abidjan",
   slug: "tesla-model-s-plaid-2024",
   images: [
     "/images/tesla-model-s-1.jpg",
@@ -214,7 +214,7 @@ function FinancingCalculator({ price }: { price: number }) {
             onChange={(e) => setDownPayment(Number(e.target.value))}
             className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer"
           />
-          <div className="text-right text-sm text-[#A7CD0F] mt-1">{downPayment.toLocaleString()}€</div>
+          <div className="text-right text-sm text-[#A7CD0F] mt-1">{downPayment.toLocaleString()} FCFA</div>
         </div>
         
         <div>
@@ -249,11 +249,11 @@ function FinancingCalculator({ price }: { price: number }) {
       <div className="pt-4 border-t border-white/10 space-y-2">
         <div className="flex justify-between text-sm">
           <span className="text-white/60">Mensualité estimée</span>
-          <span className="font-bold text-white">{monthlyPayment.toLocaleString(undefined, { maximumFractionDigits: 0 })}€/mois</span>
+          <span className="font-bold text-white">{monthlyPayment.toLocaleString(undefined, { maximumFractionDigits: 0 })} FCFA/mois</span>
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-white/60">Coût total</span>
-          <span className="font-bold text-white">{totalCost.toLocaleString(undefined, { maximumFractionDigits: 0 })}€</span>
+          <span className="font-bold text-white">{totalCost.toLocaleString(undefined, { maximumFractionDigits: 0 })} FCFA</span>
         </div>
       </div>
       
@@ -330,7 +330,7 @@ export default function VehicleDetailPage() {
                 <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
                   {vehicle.make} {vehicle.model}
                 </h1>
-                <p className="text-2xl font-bold text-[#A7CD0F]">{vehicle.price.toLocaleString()}€</p>
+                <p className="text-2xl font-bold text-[#A7CD0F]">{vehicle.price.toLocaleString()} FCFA</p>
               </div>
               
               <div className="flex items-center gap-2">
@@ -441,7 +441,7 @@ export default function VehicleDetailPage() {
               {/* Price Card */}
               <div className="p-6 rounded-2xl Gradient-to-br from-[#253E38]/10 to-[#A7CD0F]/10 border border-white/10">
                 <div className="text-4xl font-heading font-bold text-white mb-2">
-                  {vehicle.price.toLocaleString()}€
+                  {vehicle.price.toLocaleString()} FCFA
                 </div>
                 <div className="text-white/60 text-sm mb-6">Prix HT</div>
                 

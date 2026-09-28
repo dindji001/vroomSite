@@ -31,6 +31,7 @@ export interface ProductCardProps
   name?: string
   category?: string
   image?: string
+  price?: number
   originalPrice?: number
   salePrice?: number
   currency?: string
@@ -54,9 +55,10 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       name,
       category,
       image,
+      price,
       originalPrice,
       salePrice,
-      currency = "€",
+      currency = "FCFA",
       discountPercent,
       rating = 0,
       reviewCount = 0,
@@ -72,11 +74,13 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     },
     ref
   ) => {
+    const resolvedOriginal = originalPrice ?? price;
+    const resolvedSale = salePrice ?? price;
     const computedDiscount =
       discountPercent !== undefined
         ? discountPercent
-        : originalPrice && salePrice
-        ? Math.round(((originalPrice - salePrice) / originalPrice) * 100)
+        : resolvedOriginal && resolvedSale
+        ? Math.round(((resolvedOriginal - resolvedSale) / resolvedOriginal) * 100)
         : 0
 
     return (
@@ -137,8 +141,8 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
 
               <div className="flex flex-wrap items-end justify-between gap-3 pt-1">
                 <ProductCardPricing
-                  originalPrice={originalPrice}
-                  salePrice={salePrice}
+                  originalPrice={resolvedOriginal}
+                  salePrice={resolvedSale}
                   currency={currency}
                 />
                 <ProductCardActions onAddToCart={onAddToCart} stock={stock} />

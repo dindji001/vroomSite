@@ -49,7 +49,7 @@ export function AddressForm({ addresses = [], onSave, onDelete, onSetDefault }: 
     address: "",
     city: "",
     postalCode: "",
-    country: "France",
+    country: "Côte d'Ivoire",
     phone: "",
     isDefault: false,
   });
@@ -70,7 +70,7 @@ export function AddressForm({ addresses = [], onSave, onDelete, onSetDefault }: 
       address: "",
       city: "",
       postalCode: "",
-      country: "France",
+      country: "Côte d'Ivoire",
       phone: "",
       isDefault: false,
     });
@@ -88,7 +88,7 @@ export function AddressForm({ addresses = [], onSave, onDelete, onSetDefault }: 
       address: "",
       city: "",
       postalCode: "",
-      country: "France",
+      country: "Côte d'Ivoire",
       phone: "",
       isDefault: false,
     });
@@ -106,7 +106,7 @@ export function AddressForm({ addresses = [], onSave, onDelete, onSetDefault }: 
         address: formData.address || "",
         city: formData.city || "",
         postalCode: formData.postalCode || "",
-        country: formData.country || "France",
+        country: formData.country || "Côte d'Ivoire",
         phone: formData.phone || "",
         isDefault: formData.isDefault || false,
       };
@@ -230,7 +230,7 @@ export function AddressForm({ addresses = [], onSave, onDelete, onSetDefault }: 
                 <Input
                   value={formData.postalCode}
                   onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })}
-                  placeholder="75001"
+                  placeholder="00225"
                   required
                   className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/40 rounded-xl"
                 />
@@ -240,7 +240,7 @@ export function AddressForm({ addresses = [], onSave, onDelete, onSetDefault }: 
                 <Input
                   value={formData.city}
                   onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                  placeholder="Paris"
+                  placeholder="Abidjan"
                   required
                   className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/40 rounded-xl"
                 />
@@ -250,7 +250,7 @@ export function AddressForm({ addresses = [], onSave, onDelete, onSetDefault }: 
                 <Input
                   value={formData.country}
                   onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                  placeholder="France"
+                  placeholder="Côte d'Ivoire"
                   required
                   className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/40 rounded-xl"
                 />
@@ -262,7 +262,7 @@ export function AddressForm({ addresses = [], onSave, onDelete, onSetDefault }: 
               <Input
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                placeholder="06 12 34 56 78"
+                placeholder="01 23 45 67 89"
                 required
                 className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/40 rounded-xl"
               />

@@ -71,7 +71,7 @@ export const scaleIn = {
     scale: 1,
     transition: {
       ...DEFAULT_TRANSITION,
-      type: "spring",
+      type: "spring" as const,
       stiffness: 260,
       damping: 20,
     },
@@ -131,7 +131,7 @@ export function useInViewScroll(
     triggerOnce?: boolean;
     initial?: MotionProps["initial"];
     whileInView?: MotionProps["whileInView"];
-    viewport?: { once?: boolean; margin?: string; amount?: number | "some" | "all" | "any" };
+    viewport?: { once?: boolean; margin?: string; amount?: number | "some" | "all" };
   } = {}
 ) {
   const {
@@ -146,7 +146,7 @@ export function useInViewScroll(
   const inView = fmUseInView(ref, {
     once: triggerOnce,
     amount: threshold,
-    ...viewport,
+    ...(viewport as unknown as Parameters<typeof fmUseInView>[1]),
   });
 
   return {
@@ -165,6 +165,7 @@ export function useInViewScroll(
 interface MotionWrapperProps extends MotionProps {
   className?: string;
   children?: React.ReactNode;
+  id?: string;
 }
 
 const baseMotionProps: MotionProps = {

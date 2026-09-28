@@ -1,6 +1,6 @@
 import { apiClient } from "./client";
 import { apiConfig } from "@/config/api";
-import type { User, AuthTokens, LoginInput, RegisterInput } from "@/types/user";
+import type { User, AuthTokens, LoginInput, RegisterInput, UserTier, UserActivity } from "@/types/user";
 import type { ID, Address, PaymentCard } from "@/types";
 import type {
   SavedSearch,
@@ -13,8 +13,6 @@ import type {
   NotificationPreferences,
   Wishlist,
   WishlistItem,
-  UserTier,
-  UserActivity,
   Document,
 } from "@/types/customer";
 

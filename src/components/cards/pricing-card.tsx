@@ -90,7 +90,7 @@ const PricingCard = React.forwardRef<HTMLDivElement, PricingCardProps>(
 )
 PricingCard.displayName = "PricingCard"
 
-export interface PricingCardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface PricingCardHeaderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
   title?: React.ReactNode
   description?: React.ReactNode
   tier?: "basic" | "pro" | "enterprise"
@@ -145,7 +145,7 @@ export interface PricingCardPriceProps extends React.HTMLAttributes<HTMLDivEleme
 }
 
 const PricingCardPrice = React.forwardRef<HTMLDivElement, PricingCardPriceProps>(
-  ({ className, price, priceAnnual, period = "/mo", periodAnnual = "/yr", currency = "€", isAnnual = false, ...props }, ref) => {
+  ({ className, price, priceAnnual, period = "/mo", periodAnnual = "/yr", currency = "FCFA", isAnnual = false, ...props }, ref) => {
     const currentPrice = isAnnual && priceAnnual !== undefined ? priceAnnual : price
     const currentPeriod = isAnnual ? periodAnnual : period
     const monthlyEquivalent = priceAnnual !== undefined ? Number((priceAnnual / 12).toFixed(0)) : undefined

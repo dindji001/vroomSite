@@ -331,7 +331,7 @@ export const HoverReveal = React.forwardRef<HTMLDivElement, HoverRevealProps>(
 );
 HoverReveal.displayName = "HoverReveal";
 
-interface HoverScaleProps extends React.HTMLAttributes<HTMLDivElement> {
+interface HoverScaleProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart" | "onAnimationEnd" | "onAnimationIteration"> {
   children?: React.ReactNode;
   className?: string;
   disabled?: boolean;

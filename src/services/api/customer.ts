@@ -1,12 +1,12 @@
 import { apiClient } from "./client";
 import { apiConfig } from "@/config/api";
 import type { ID, Money, PaginationParams, PaginatedResult } from "@/types";
+import type { UserTier } from "@/types/user";
 import type {
   Wallet,
   WalletTransaction,
   LoyaltyProgram,
   LoyaltyPointsLedger,
-  UserTier,
   Referral,
 } from "@/types/customer";
 import { siteConfig } from "@/config/site";
@@ -617,20 +617,22 @@ export const regionsApi = {
     >(apiConfig.endpoints.regions.shippingZones, { query }),
 };
 
+type UploadFolder =
+  | "users/avatars"
+  | "vehicles/images"
+  | "products/images"
+  | "support/attachments"
+  | "documents"
+  | "reviews/media"
+  | "blog/images"
+  | "temp";
+
 export const uploadsApi = {
   createPresigned: (payload: {
     fileName: string;
     contentType: string;
     sizeBytes: number;
-    folder:
-      | "users/avatars"
-      | "vehicles/images"
-      | "products/images"
-      | "support/attachments"
-      | "documents"
-      | "reviews/media"
-      | "blog/images"
-      | "temp";
+    folder: UploadFolder;
     use?: string;
     access?: "public" | "private";
     expiresSeconds?: number;
@@ -666,7 +668,7 @@ export const uploadsApi = {
     }>(apiConfig.endpoints.uploads.confirm.replace(":key", key), metadata),
   remove: (key: string) =>
     apiClient.delete(apiConfig.endpoints.uploads.remove.replace(":key", key)),
-  async uploadFile(file: File, folder: Parameters<typeof uploadsApi.createPresigned>[0]["folder"]) {
+  async uploadFile(file: File, folder: UploadFolder) {
     const { uploadUrl, method, fields, key } = await this.createPresigned({
       fileName: file.name,
       contentType: file.type || "application/octet-stream",

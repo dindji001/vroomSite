@@ -44,7 +44,7 @@ const Timeline = React.forwardRef<HTMLDivElement, TimelineProps>(
     const lineClass = React.useMemo(() => {
       const base = "absolute z-0 transition-all duration-500 ease-[var(--ease-premium)]"
       if (orientation === "horizontal") {
-        const y = align === "top" ? "top-6" : align === "bottom" ? "bottom-6" : "top-1/2 -translate-y-1/2"
+        const y = "top-1/2 -translate-y-1/2"
         const lineStyle =
           variant === "dotted"
             ? "border-t-2 border-dashed border-[#253E38]/30 dark:border-[#A7CD0F]/30"
@@ -191,7 +191,7 @@ export interface TimelineDotProps
     VariantProps<typeof timelineDotVariants> {
   icon?: React.ReactNode
   orientation?: "vertical" | "horizontal"
-  align?: "left" | "right" | "center"
+  align?: "left" | "right" | "center" | "top" | "bottom"
   itemIndex?: number
 }
 
@@ -199,9 +199,9 @@ const TimelineDot = React.forwardRef<HTMLDivElement, TimelineDotProps>(
   ({ className, status, size, icon, orientation = "vertical", align = "left", itemIndex = 0, ...props }, ref) => {
     const positionClass =
       orientation === "horizontal"
-        ? align === "top"
+        ? (align as string) === "top"
           ? "top-0 left-1/2 -translate-x-1/2"
-          : align === "bottom"
+          : (align as string) === "bottom"
           ? "bottom-0 left-1/2 -translate-x-1/2"
           : "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
         : align === "center"
@@ -230,7 +230,7 @@ const TimelineDot = React.forwardRef<HTMLDivElement, TimelineDotProps>(
 )
 TimelineDot.displayName = "TimelineDot"
 
-export interface TimelineContentProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TimelineContentProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
   date?: React.ReactNode
   title?: React.ReactNode
   description?: React.ReactNode

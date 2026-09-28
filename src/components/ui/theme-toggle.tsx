@@ -110,7 +110,7 @@ const ThemeToggle = React.forwardRef<HTMLButtonElement, ThemeToggleProps>(
     if (variant === "menu") {
       return (
         <div
-          ref={ref as React.RefObject<HTMLDivElement>}
+          ref={ref as unknown as React.RefObject<HTMLDivElement>}
           className={cn(
             "inline-flex items-center gap-1 rounded-2xl border border-border/60 bg-card p-1 shadow-sm",
             className

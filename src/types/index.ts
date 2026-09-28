@@ -6,6 +6,46 @@ export type Timestamp = {
   deletedAt?: string | null;
 };
 
+export type {
+  User,
+  UserRole,
+  UserStatus,
+  Gender,
+  VerificationStatus,
+  UserPreferences,
+  UserTier,
+  AuthTokens,
+  AuthState,
+  LoginInput,
+  RegisterInput,
+  SocialProvider,
+  UpdateProfileInput,
+  ChangePasswordInput,
+  UserActivity,
+} from "./user";
+
+export type {
+  WalletTransactionType,
+  WalletTransactionStatus,
+  Wallet,
+  WalletTransaction,
+  LoyaltyTransactionType,
+  LoyaltyProgram,
+  LoyaltyPointsLedger,
+  Referral,
+  PaymentCard,
+  SavedSearch,
+  WishlistItem,
+  Wishlist,
+  NotificationKind,
+  NotificationChannel,
+  Notification,
+  NotificationPreferences,
+  DocumentKind,
+  DocumentStatus,
+  Document,
+} from "./customer";
+
 export type PaginationParams = {
   page?: number;
   limit?: number;
@@ -58,7 +98,7 @@ export type AsyncState<TData, TError = unknown> = {
 };
 
 export type Locale = "fr" | "en" | "de" | "es" | "it";
-export type Currency = "EUR" | "USD" | "GBP" | "CHF";
+export type Currency = "XOF" | "EUR" | "USD" | "GBP" | "CHF";
 export type LanguageCode = "fr-FR" | "en-US" | "de-DE" | "es-ES" | "it-IT";
 
 export type Money = {

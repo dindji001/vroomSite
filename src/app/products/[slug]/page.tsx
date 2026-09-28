@@ -63,7 +63,7 @@ export default async function ProductPage({
                 <h2 className="font-heading text-xl font-bold">Caractéristiques</h2>
                 <div className="mt-2 space-y-2">
                   {product.attributes.map((attr) => (
-                    <div key={attr.id} className="flex justify-between py-2 border-b border-border">
+                    <div key={attr.attributeId} className="flex justify-between py-2 border-b border-border">
                       <span className="text-muted-foreground">{attr.attribute?.name}</span>
                       <span className="font-medium">{String(attr.value)}</span>
                     </div>
@@ -137,7 +137,7 @@ export default async function ProductPage({
                 name={p.name}
                 originalPrice={p.compareAtPrice?.amount}
                 salePrice={p.price.amount}
-                currency={p.price.currency === "EUR" ? "€" : "$"}
+                currency={p.price.currency === "XOF" ? "FCFA" : "$"}
                 category={p.category?.name}
                 image={p.images[0]?.url}
                 href={`/products/${p.slug}`}

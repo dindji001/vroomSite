@@ -142,9 +142,12 @@ export function useUnmount(fn: () => void): void {
 }
 
 export function useMounted(): boolean {
-  const [mounted, setMounted] = React.useState(false);
+  const [mounted, setMounted] = React.useState(() => {
+    if (typeof window === "undefined") return false;
+    return false;
+  });
   React.useEffect(() => {
-    setMounted(true);
+    queueMicrotask(() => setMounted(true));
   }, []);
   return mounted;
 }
@@ -155,11 +158,13 @@ export function useForceUpdate(): () => void {
 }
 
 export function usePrevious<T>(value: T): T | undefined {
-  const ref = React.useRef<T | undefined>(undefined);
+  const [current, setCurrent] = React.useState<T | undefined>(undefined);
+  const [previous, setPrevious] = React.useState<T | undefined>(undefined);
   React.useEffect(() => {
-    ref.current = value;
+    setPrevious(current);
+    setCurrent(value);
   }, [value]);
-  return ref.current;
+  return previous;
 }
 
 export function useCounter(initial = 0, min?: number, max?: number) {
@@ -208,8 +213,10 @@ export function useFetch<T>(
   React.useEffect(() => {
     if (!enabled) return;
     let cancelled = false;
-    setLoading(true);
-    setError(null);
+    queueMicrotask(() => {
+      setLoading(true);
+      setError(null);
+    });
     fetcher()
       .then((res) => {
         if (cancelled) return;
@@ -260,8 +267,8 @@ export function useCopyToClipboard(): [
       });
       setTimeout(() => setCopied(false), 2000);
       return true;
-    } catch (e: any) {
-      setError(e?.message ?? "Erreur de copie");
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Erreur de copie");
       setCopied(false);
       return false;
     }
@@ -291,9 +298,10 @@ export function useToast(): {
 }
 
 export function useIsFirstRender(): boolean {
-  const ref = React.useRef(true);
-  const isFirst = ref.current;
-  ref.current = false;
+  const [isFirst, setIsFirst] = React.useState(true);
+  React.useEffect(() => {
+    setIsFirst(false);
+  }, []);
   return isFirst;
 }
 

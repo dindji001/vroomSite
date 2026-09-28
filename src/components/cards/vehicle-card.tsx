@@ -64,7 +64,7 @@ const VehicleCard = React.forwardRef<HTMLDivElement, VehicleCardProps>(
       model,
       year,
       price,
-      currency = "€",
+      currency = "FCFA",
       mileage,
       fuel,
       transmission,

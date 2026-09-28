@@ -84,7 +84,7 @@ export default function CheckoutPage() {
             <div className="mt-4 space-y-3">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Sous-total</span>
-                <p className="font-semibold">{formatCurrency(subtotal, items[0].unitPrice.currency as "EUR")}</p>
+                <p className="font-semibold">{formatCurrency(subtotal, items[0].unitPrice.currency as "XOF")}</p>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Livraison</span>
@@ -97,7 +97,7 @@ export default function CheckoutPage() {
               <div className="pt-3 border-t border-border flex justify-between font-bold text-lg">
                 <span>Total</span>
                 <span className="text-[#253E38] dark:text-[#A7CD0F]">
-                  {formatMoney({ amount: total as unknown as number, currency: currency as "EUR" })}
+                  {formatMoney({ amount: total as unknown as number, currency: currency as "XOF" })}
                 </span>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import type { ID, Money } from "@/types";
+import type { ID, Money, Currency } from "@/types";
 import { ERROR_MESSAGES } from "@/constants";
 
 export function buildUrl(
@@ -314,7 +314,7 @@ export function isSameMoney(a?: Money | null, b?: Money | null): boolean {
   return a.amount === b.amount && a.currency === b.currency;
 }
 
-export function buildMoney(amount: number, currency = "EUR"): Money {
+export function buildMoney(amount: number, currency: Currency = "XOF"): Money {
   return { amount, currency };
 }
 

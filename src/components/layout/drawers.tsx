@@ -23,8 +23,8 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useUIStore, useCartStore, useWishlistStore } from "@/store";
 import { cn, formatMoney } from "@/helpers";
-import type { CartLineItem, WishlistItem } from "@/types/order";
-import type { Wishlist } from "@/types/customer";
+import type { CartLineItem } from "@/types/order";
+import type { Wishlist, WishlistItem } from "@/types";
 import type { ID } from "@/types";
 
 type DrawerSide = "left" | "right";
@@ -45,11 +45,11 @@ interface DrawerShellProps {
 const slideVariants = (side: DrawerSide) => ({
   closed: {
     x: side === "right" ? "100%" : "-100%",
-    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
   },
   open: {
     x: 0,
-    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
   },
 });
 
@@ -240,7 +240,7 @@ function EmptyDrawerState({
             iconBgByAccent[accent]
           )}
         >
-          <Icon className="size-12 md:size-14" strokeWidth={1.5} />
+          <Icon className="size-12 md:size-14" {...({ strokeWidth: 1.5 } as React.SVGAttributes<SVGSVGElement>)} />
         </div>
         <div
           className={cn(
@@ -637,7 +637,7 @@ export function WishlistDrawer() {
       productId: product,
       variantId: wItem.variantId,
       name,
-      unitPrice: wItem.priceWhenAdded ?? { amount: 0, currency: "EUR" },
+      unitPrice: wItem.priceWhenAdded ?? { amount: 0, currency: "XOF" },
       quantity: wItem.quantity,
     });
     if (activeList?.id && wItem.id) {
@@ -721,7 +721,7 @@ export function WishlistDrawer() {
         />
       ) : (
         <div className="p-5 md:p-7 space-y-3.5 md:space-y-4">
-          {items.map((item) => (
+          {items.map((item: WishlistItem) => (
             <WishlistItemRow
               key={item.id}
               item={item}

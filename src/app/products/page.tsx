@@ -36,9 +36,9 @@ const mockProducts = [
   {
     id: "1",
     name: "GPS Tracker Premium",
-    originalPrice: 299,
-    salePrice: 249,
-    currency: "€",
+    originalPrice: 195000,
+    salePrice: 163000,
+    currency: "FCFA",
     category: "GPS",
     image: "/images/gps-tracker.jpg",
     rating: 4.8,
@@ -50,9 +50,9 @@ const mockProducts = [
   {
     id: "2",
     name: "Dashcam 4K Ultra",
-    originalPrice: 199,
-    salePrice: 159,
-    currency: "€",
+    originalPrice: 130000,
+    salePrice: 104000,
+    currency: "FCFA",
     category: "Dashcam",
     image: "/images/dashcam-4k.jpg",
     rating: 4.9,
@@ -64,9 +64,9 @@ const mockProducts = [
   {
     id: "3",
     name: "Alarme Intelligente Pro",
-    originalPrice: 449,
-    salePrice: 399,
-    currency: "€",
+    originalPrice: 294000,
+    salePrice: 261000,
+    currency: "FCFA",
     category: "Alarmes",
     image: "/images/alarm-pro.jpg",
     rating: 4.7,
@@ -78,9 +78,9 @@ const mockProducts = [
   {
     id: "4",
     name: "Capteur de Stationnement",
-    originalPrice: 129,
-    salePrice: 99,
-    currency: "€",
+    originalPrice: 84000,
+    salePrice: 65000,
+    currency: "FCFA",
     category: "Capteurs",
     image: "/images/parking-sensor.jpg",
     rating: 4.6,
@@ -92,9 +92,9 @@ const mockProducts = [
   {
     id: "5",
     name: "Kit Accessoires Premium",
-    originalPrice: 79,
-    salePrice: 59,
-    currency: "€",
+    originalPrice: 52000,
+    salePrice: 39000,
+    currency: "FCFA",
     category: "Accessoires",
     image: "/images/accessories-kit.jpg",
     rating: 4.5,
@@ -106,9 +106,9 @@ const mockProducts = [
   {
     id: "6",
     name: "Filtre à Air Performance",
-    originalPrice: 49,
-    salePrice: 39,
-    currency: "€",
+    originalPrice: 32000,
+    salePrice: 26000,
+    currency: "FCFA",
     category: "Filtres",
     image: "/images/air-filter.jpg",
     rating: 4.4,
@@ -120,9 +120,9 @@ const mockProducts = [
   {
     id: "7",
     name: "GPS Tracker Basic",
-    originalPrice: 149,
-    salePrice: 119,
-    currency: "€",
+    originalPrice: 98000,
+    salePrice: 78000,
+    currency: "FCFA",
     category: "GPS",
     image: "/images/gps-basic.jpg",
     rating: 4.3,
@@ -134,9 +134,9 @@ const mockProducts = [
   {
     id: "8",
     name: "Dashcam HD Compact",
-    originalPrice: 89,
-    salePrice: 69,
-    currency: "€",
+    originalPrice: 58000,
+    salePrice: 45000,
+    currency: "FCFA",
     category: "Dashcam",
     image: "/images/dashcam-hd.jpg",
     rating: 4.2,
@@ -148,9 +148,9 @@ const mockProducts = [
   {
     id: "9",
     name: "Alarme Essentiel",
-    originalPrice: 199,
-    salePrice: 179,
-    currency: "€",
+    originalPrice: 130000,
+    salePrice: 117000,
+    currency: "FCFA",
     category: "Alarmes",
     image: "/images/alarm-basic.jpg",
     rating: 4.1,
@@ -299,7 +299,7 @@ export default function ProductsPage() {
   const handleAddToCart = (product: any) => {
     addItem({
       name: product.name,
-      unitPrice: { amount: product.salePrice, currency: "EUR" },
+      unitPrice: { amount: product.salePrice, currency: "XOF" },
       quantity: 1,
       kind: "product",
       productId: product.id,
@@ -308,9 +308,10 @@ export default function ProductsPage() {
   
   const handleToggleWishlist = (product: any) => {
     toggleItem({
-      id: product.id,
       kind: "product",
       productId: product.id,
+      variantId: product.variantId,
+      quantity: 1,
     });
   };
   
@@ -469,7 +470,7 @@ export default function ProductsPage() {
                         <div className="flex items-center justify-between">
                           <label className="text-sm text-white/90">Prix max</label>
                           <span className="text-xs text-[#A7CD0F]">
-                            {priceRange[1]}€
+                            {priceRange[1]} FCFA
                           </span>
                         </div>
                         <input

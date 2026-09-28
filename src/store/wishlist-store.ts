@@ -137,8 +137,8 @@ export const useWishlistStore = create<Store>()(
           }
           set({ loading: false });
           return payload;
-        } catch (err: any) {
-          set({ loading: false, error: err?.message ?? null });
+        } catch (err: unknown) {
+          set({ loading: false, error: err instanceof Error ? err.message : null });
           return null;
         }
       },
@@ -241,8 +241,8 @@ export const useWishlistStore = create<Store>()(
           });
           await wishlistApi.addItem(listId, newItem).catch(() => {});
           return true;
-        } catch (err: any) {
-          set({ loading: false, error: err?.message ?? null });
+        } catch (err: unknown) {
+          set({ loading: false, error: err instanceof Error ? err.message : null });
           return false;
         }
       },

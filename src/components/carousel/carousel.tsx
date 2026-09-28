@@ -58,7 +58,7 @@ type CarouselContextProps = {
   variant?: "default" | "fade" | "cards" | "spotlight" | "gallery"
   isPlaying: boolean
   togglePlay: () => void
-}
+} & { variant: "default" | "fade" | "cards" | "spotlight" | "gallery" | undefined }
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
 
@@ -74,7 +74,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
   (
     {
       className,
-      variant = "default",
+      variant: variantProp = "default",
       opts,
       plugins,
       autoplay = false,
@@ -88,6 +88,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     },
     ref
   ) => {
+    const variant = variantProp ?? "default";
     const carouselOpts = React.useMemo<CarouselOptions>(
       () => ({
         loop: infinite,
@@ -169,12 +170,16 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
           scrollNext()
         }
       }
-      const node = (ref as React.RefObject<HTMLDivElement>)?.current || carouselRef.current
+      const outerRef = ref as React.MutableRefObject<HTMLDivElement | null>
+      const node = outerRef?.current ?? (carouselRef as unknown as React.MutableRefObject<HTMLElement | null>).current
       if (!node) return
-      node.tabIndex = 0
+      (node as HTMLElement).tabIndex = 0
       node.addEventListener("keydown", handleKeyDown)
       return () => node.removeEventListener("keydown", handleKeyDown)
     }, [scrollPrev, scrollNext, ref, carouselRef])
+
+    const contextVariant: "default" | "fade" | "cards" | "spotlight" | "gallery" | undefined =
+      variant === null ? undefined : variant;
 
     return (
       <CarouselContext.Provider
@@ -189,7 +194,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
           selectedIndex,
           scrollSnaps,
           progress,
-          variant,
+          variant: contextVariant,
           isPlaying,
           togglePlay,
         }}

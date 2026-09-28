@@ -3,8 +3,7 @@
 import * as React from "react";
 
 export function useIntersectionObserver<T extends Element>(
-  options: IntersectionObserverInit = { threshold: 0 },
-  deps: unknown[] = []
+  options: IntersectionObserverInit = { threshold: 0 }
 ): [React.RefCallback<T>, IntersectionObserverEntry | null] {
   const [entry, setEntry] = React.useState<IntersectionObserverEntry | null>(null);
   const ref = React.useCallback(
@@ -17,16 +16,14 @@ export function useIntersectionObserver<T extends Element>(
       );
       observer.observe(node);
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    deps
+    [options.root, options.rootMargin, options.threshold]
   );
   return [ref, entry];
 }
 
 export function useInView<T extends Element>(
   options: IntersectionObserverInit = { threshold: 0.2 },
-  once = true,
-  deps: unknown[] = []
+  once = true
 ): [React.RefCallback<T>, boolean, IntersectionObserverEntry | null] {
   const [inView, setInView] = React.useState(false);
   const [entry, setEntry] = React.useState<IntersectionObserverEntry | null>(null);
@@ -57,8 +54,7 @@ export function useInView<T extends Element>(
       }, options);
       observer.observe(node);
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    deps
+    [once, options.root, options.rootMargin, options.threshold]
   );
   return [ref, inView, entry];
 }
@@ -148,9 +144,7 @@ export function useDocumentScroll(): { x: number; y: number; progress: number } 
   return pos;
 }
 
-export function useElementSize<T extends Element>(
-  deps: unknown[] = []
-): [React.RefCallback<T>, { width: number; height: number }] {
+export function useElementSize<T extends Element>(): [React.RefCallback<T>, { width: number; height: number }] {
   const [size, setSize] = React.useState({ width: 0, height: 0 });
   const ref = React.useCallback(
     (node: T | null) => {
@@ -170,8 +164,7 @@ export function useElementSize<T extends Element>(
         window.addEventListener("resize", measure);
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    deps
+    []
   );
   return [ref, size];
 }

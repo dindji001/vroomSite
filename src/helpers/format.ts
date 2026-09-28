@@ -1,6 +1,7 @@
 import type { Currency, Money } from "@/types";
 
 export const CURRENCY_SYMBOLS: Record<Currency, string> = {
+  XOF: "FCFA",
   EUR: "€",
   USD: "$",
   GBP: "£",
@@ -8,6 +9,7 @@ export const CURRENCY_SYMBOLS: Record<Currency, string> = {
 };
 
 export const CURRENCY_POSITION: Record<Currency, "before" | "after"> = {
+  XOF: "after",
   EUR: "after",
   USD: "before",
   GBP: "before",
@@ -16,7 +18,7 @@ export const CURRENCY_POSITION: Record<Currency, "before" | "after"> = {
 
 export function formatCurrency(
   amount: number,
-  currency: Currency = "EUR",
+  currency: Currency = "XOF",
   locale: string = "fr-FR",
   options: Intl.NumberFormatOptions = {}
 ): string {
@@ -30,8 +32,9 @@ export function formatCurrency(
     ...options,
   }).format(amount);
 
-  if (position === "after" && (currency === "EUR")) {
-    return result.replace("EUR", "€").replace(/€/, " €").replace(/\s€/, " €");
+  if (position === "after" && (currency === "EUR" || currency === "XOF")) {
+    const symbol = currency === "XOF" ? "FCFA" : "€";
+    return result.replace(currency, symbol).replace(new RegExp(symbol), ` ${symbol}`).replace(new RegExp(`\\s${symbol}`), ` ${symbol}`);
   }
   return result;
 }
@@ -186,7 +189,7 @@ export function extractTaxAmount(amountWithTax: number, rate: number): number {
 }
 
 export function sumMoney(items: Money[]): Money {
-  if (items.length === 0) return { amount: 0, currency: "EUR" };
+  if (items.length === 0) return { amount: 0, currency: "XOF" };
   const currency = items[0].currency;
   const amount = items.reduce((sum, m) => {
     if (m.currency !== currency) {

@@ -74,8 +74,10 @@ function initialState(): Omit<Cart, "items"> & { items: CartLineItem[] } {
     totalWeightGrams: 0,
     itemCount: 0,
     uniqueItemCount: 0,
-    currency: "EUR",
+    currency: "XOF",
     metadata: {},
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
   };
 }
 
@@ -118,8 +120,8 @@ export const useCartStore = create<Store>()(
         try {
           const remote = await cartApi.sync(rest);
           set({ ...remote, meta: { ...meta, syncStatus: "success", lastSyncedAt: Date.now() } });
-        } catch (err: any) {
-          set({ meta: { ...meta, syncStatus: "error", error: err?.message ?? "Synchronisation échouée" } });
+        } catch (err: unknown) {
+          set({ meta: { ...meta, syncStatus: "error", error: err instanceof Error ? err.message : "Synchronisation échouée" } });
         }
       },
 
@@ -172,9 +174,9 @@ export const useCartStore = create<Store>()(
           const remote = await cartApi.addItem(lineItem, rest);
           set({ ...remote });
           return { ok: true, added: true };
-        } catch (err: any) {
+        } catch (err: unknown) {
           set({
-            meta: { ...meta, error: err?.message ?? "Ajout échoué" },
+            meta: { ...meta, error: err instanceof Error ? err.message : "Ajout échoué" },
             items: meta.optimistic ? items : get().items,
           });
           if (meta.optimistic) get().recompute();
@@ -252,12 +254,12 @@ export const useCartStore = create<Store>()(
           const remote = await cartApi.applyCoupon(code);
           set({ ...remote, meta: { ...get().meta, applyingCoupon: false } });
           return true;
-        } catch (err: any) {
+        } catch (err: unknown) {
           set({
             meta: {
               ...get().meta,
               applyingCoupon: false,
-              error: err?.message ?? "Code invalide",
+              error: err instanceof Error ? err.message : "Code invalide",
             },
           });
           return false;

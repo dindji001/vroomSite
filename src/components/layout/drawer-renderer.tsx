@@ -168,7 +168,7 @@ function CartDrawerContent({ onClose }: { onClose: () => void }) {
         <div className="flex items-center justify-between">
           <span className="text-sm text-muted-foreground">Sous-total</span>
           <span className="font-heading font-bold text-xl">
-            {items.length > 0 ? formatCurrency(items.reduce((sum, item) => sum + item.unitPrice.amount * item.quantity, 0), items[0].unitPrice.currency as any) : "€0"}
+            {items.length > 0 ? formatCurrency(items.reduce((sum, item) => sum + item.unitPrice.amount * item.quantity, 0), items[0].unitPrice.currency as any) : "0 FCFA"}
           </span>
         </div>
         <div className="grid grid-cols-2 gap-2.5">

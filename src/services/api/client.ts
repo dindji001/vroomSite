@@ -1,6 +1,6 @@
 import { apiConfig } from "@/config/api";
 import { STORAGE_KEYS, ERROR_MESSAGES } from "@/constants";
-import { storageGet, storageSet, storageRemove, clearAuthStorage } from "@/helpers";
+import { storageGet, storageSet, clearAuthStorage } from "@/helpers";
 
 export type RequestOptions = {
   method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "HEAD" | "OPTIONS";
@@ -144,21 +144,16 @@ export async function apiRequest<T = unknown>(
   let url = endpoint.startsWith("http") ? endpoint : `${baseUrl}${endpoint}`;
   url = buildUrlWithQuery(url, query);
 
-  let requestHeaders: Record<string, string> = {
+  const accessToken = storageGet<string>(STORAGE_KEYS.AUTH.ACCESS_TOKEN);
+
+  const requestHeaders: Record<string, string> = {
     Accept: "application/json",
     "Accept-Language": "fr-FR",
     "X-App-Version": "1.0.0",
     ...headers,
+    ...(!isFormData && body ? { "Content-Type": "application/json" } : {}),
+    ...(authenticate && accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
   };
-
-  if (!isFormData && body) {
-    requestHeaders["Content-Type"] = "application/json";
-  }
-
-  let accessToken = storageGet<string>(STORAGE_KEYS.AUTH.ACCESS_TOKEN);
-  if (authenticate && accessToken) {
-    requestHeaders.Authorization = `Bearer ${accessToken}`;
-  }
 
   const controller =
     typeof AbortController !== "undefined" ? new AbortController() : null;
@@ -259,7 +254,7 @@ export async function apiRequest<T = unknown>(
         timestamp: new Date().toISOString(),
       };
 
-      if (apiConfig.retryStatuses.includes(res.status) && attempt < retries) {
+      if ((apiConfig.retryStatuses as readonly number[]).includes(res.status) && attempt < retries) {
         const wait = Math.min(
           retryDelayMs * 2 ** attempt,
           apiConfig.retryMaxDelayMs
@@ -274,8 +269,9 @@ export async function apiRequest<T = unknown>(
       }
 
       throw new ApiClientError(errorPayload);
-    } catch (err: any) {
+    } catch (err: unknown) {
       if (err instanceof ApiClientError) throw err;
+      const errAny = err as { message?: string; name?: string };
       if (attempt < retries) {
         const wait = Math.min(
           retryDelayMs * 2 ** attempt,
@@ -283,15 +279,15 @@ export async function apiRequest<T = unknown>(
         );
         await new Promise((r) => setTimeout(r, wait));
         lastError = {
-          message: err?.message ?? ERROR_MESSAGES.NETWORK,
+          message: errAny.message ?? ERROR_MESSAGES.NETWORK,
           status: 0,
         };
         continue;
       }
       timeout && clearTimeout(timeout);
       throw new ApiClientError({
-        message: err?.name === "AbortError" ? ERROR_MESSAGES.TIMEOUT : ERROR_MESSAGES.NETWORK,
-        status: err?.name === "AbortError" ? 408 : 0,
+        message: errAny.name === "AbortError" ? ERROR_MESSAGES.TIMEOUT : ERROR_MESSAGES.NETWORK,
+        status: errAny.name === "AbortError" ? 408 : 0,
       });
     }
   }

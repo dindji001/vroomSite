@@ -3,6 +3,7 @@
 import * as React from "react";
 import { motion, useInView } from "framer-motion";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { 
   Search, 
   CarFront, 
@@ -49,7 +50,7 @@ function SearchResultItem({
           model={item.model?.name}
           year={item.year}
           price={item.price?.amount}
-          currency={item.price?.currency === "EUR" ? "€" : "$"}
+          currency={item.price?.currency === "XOF" ? "FCFA" : "$"}
           fuel={item.fuelType}
           transmission={item.transmission}
           mileage={item.mileage?.toString()}
@@ -59,7 +60,7 @@ function SearchResultItem({
           name={item.name}
           originalPrice={item.compareAtPrice?.amount}
           salePrice={item.price?.amount}
-          currency={item.price?.currency === "EUR" ? "€" : "$"}
+          currency={item.price?.currency === "XOF" ? "FCFA" : "$"}
           image={item.images?.[0]?.url}
           stock={item.inStock ? "in" : "out"}
         />
@@ -95,7 +96,7 @@ function FilterChip({
   );
 }
 
-export default function SearchPage() {
+function SearchPage() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
   const [searchQuery, setSearchQuery] = React.useState(query);
@@ -109,13 +110,13 @@ export default function SearchPage() {
       make: { name: "Tesla" },
       model: { name: "Model S" },
       year: 2024,
-      price: { amount: 89000, currency: "EUR" },
+      price: { amount: 15000000, currency: "XOF" },
       images: [{ url: "/images/tesla-model-s.jpg" }],
       fuelType: "electric",
       transmission: "automatic",
       mileage: 0,
       condition: "new",
-      location: "Paris",
+      location: "Abidjan",
       slug: "tesla-model-s-2024",
     },
     {
@@ -123,13 +124,13 @@ export default function SearchPage() {
       make: { name: "BMW" },
       model: { name: "X5" },
       year: 2023,
-      price: { amount: 75000, currency: "EUR" },
+      price: { amount: 12000000, currency: "XOF" },
       images: [{ url: "/images/bmw-x5.jpg" }],
       fuelType: "hybrid",
       transmission: "automatic",
       mileage: 15000,
       condition: "used",
-      location: "Lyon",
+      location: "Abidjan",
       slug: "bmw-x5-2023",
     },
   ];
@@ -138,8 +139,8 @@ export default function SearchPage() {
     {
       id: "1",
       name: "Système GPS Premium",
-      price: { amount: 299, currency: "EUR" },
-      compareAtPrice: { amount: 399, currency: "EUR" },
+      price: { amount: 180000, currency: "XOF" },
+      compareAtPrice: { amount: 240000, currency: "XOF" },
       images: [{ url: "/images/gps-system.jpg" }],
       category: { name: "Électronique" },
       brand: { name: "VroomTrack" },
@@ -149,7 +150,7 @@ export default function SearchPage() {
     {
       id: "2",
       name: "Kit d'entretien complet",
-      price: { amount: 89, currency: "EUR" },
+      price: { amount: 55000, currency: "XOF" },
       compareAtPrice: null,
       images: [{ url: "/images/maintenance-kit.jpg" }],
       category: { name: "Entretien" },
@@ -274,10 +275,10 @@ export default function SearchPage() {
                 <label className="text-sm text-white/70 mb-2 block">Prix max</label>
                 <select className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white">
                   <option>Tous les prix</option>
-                  <option>€10,000</option>
-                  <option>€25,000</option>
-                  <option>€50,000</option>
-                  <option>€100,000+</option>
+                  <option>5 000 000 FCFA</option>
+                  <option>10 000 000 FCFA</option>
+                  <option>20 000 000 FCFA</option>
+                  <option>50 000 000+ FCFA</option>
                 </select>
               </div>
               <div>
@@ -438,3 +439,13 @@ export default function SearchPage() {
     </div>
   );
 }
+
+function SearchPageWithSuspense() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Chargement...</div>}>
+      <SearchPage />
+    </Suspense>
+  );
+}
+
+export default SearchPageWithSuspense;

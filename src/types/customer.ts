@@ -303,3 +303,39 @@ export type NotificationPreferences = {
   browserSubscriptions?: Array<{ endpoint: string; createdAt: string }>;
   updatedAt: string;
 };
+
+export type DocumentKind =
+  | "identity_card"
+  | "passport"
+  | "driver_license"
+  | "proof_of_address"
+  | "insurance"
+  | "registration"
+  | "contract"
+  | "invoice"
+  | "other";
+
+export type DocumentStatus = "pending" | "verified" | "rejected" | "expired";
+
+export type Document = {
+  id: ID;
+  userId: ID;
+  user?: User;
+  kind: DocumentKind;
+  status: DocumentStatus;
+  fileName: string;
+  fileUrl: string;
+  fileSize?: number;
+  mimeType?: string;
+  issuer?: string;
+  number?: string;
+  issuedAt?: string;
+  expiresAt?: string;
+  rejectionReason?: string;
+  verifiedAt?: string;
+  verifiedById?: ID;
+  notes?: string;
+  metadata?: Record<string, unknown>;
+  createdAt: string;
+  updatedAt: string;
+};

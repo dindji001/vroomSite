@@ -59,7 +59,7 @@ export default function WishlistPage() {
                     model={item.vehicle.model?.name}
                     year={item.vehicle.year}
                     price={item.vehicle.price?.amount}
-                    currency={item.vehicle.price?.currency === "EUR" ? "€" : "$"}
+                    currency={item.vehicle.price?.currency === "XOF" ? "FCFA" : "$"}
                     mileage={item.vehicle.mileageKm?.toLocaleString()}
                     fuel={item.vehicle.fuelType}
                     transmission={item.vehicle.transmission}
@@ -75,7 +75,7 @@ export default function WishlistPage() {
                     name={item.product.name}
                     originalPrice={item.product.compareAtPrice?.amount}
                     salePrice={item.product.price.amount}
-                    currency={item.product.price.currency === "EUR" ? "€" : "$"}
+                    currency={item.product.price.currency === "XOF" ? "FCFA" : "$"}
                     category={item.product.category?.name}
                     image={item.product.images[0]?.url}
                     href={`/products/${item.product.slug}`}
